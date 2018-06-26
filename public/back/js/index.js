@@ -10,14 +10,14 @@
             },
             tooltip: {},
             legend: {
-                data:['数量']
+                data:['人数']
             },
             xAxis: {
                 data: ["1月","2月","3月","4月","5月"]
             },
             yAxis: {},
             series: [{
-                name: '销量',
+                name: '人数',
                 type: 'bar',
                 data: [1000, 1500,1800, 1200, 1000, 800]
             }]

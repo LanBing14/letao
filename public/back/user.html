@@ -9,6 +9,7 @@
     <!-- 引入进度条插件 -->
     <link rel="stylesheet" href="./lib/nprogress/nprogress.css">
     <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/index.css">
     <title>Document</title>
 </head>
 <body>
@@ -23,7 +24,7 @@
         </div>
         <div class="slide_nav">
             <ul>
-                <li><a href="user.html"><i class="glyphicon glyphicon-user"></i><span>用户管理</span></a></li>
+                <li><a href="user.html" class="current"><i class="glyphicon glyphicon-user"></i><span>用户管理</span></a></li>
                 <li>
                     <a href="javascript:;" class="category"><i class="glyphicon glyphicon-list"></i><span>分类管理</span></a>
                     <ul class="child" style="display:none">
@@ -45,13 +46,36 @@
         <div class="container-fluid">
             <ol class="breadcrumb">
                 <li><a href="#">管理系统</a></li>
-                <li class="active">首页</li>
+                <li class="active">用户管理</li>
             </ol>
-           <div class="container_bottom">
-                <div class="echart1 pull-left" id="echart1"></div>
-                <div class="echart2 pull-right" id="echart2"></div>
-           </div>
 
+            <div class="main_bottom">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th width="10%">序号</th>
+                            <th width="20%">用户名</th>
+                            <th width="30%">手机号</th>
+                            <th width="20%">状态</th>
+                            <th width="20%">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>itcast</td>
+                            <td>125325698789</td>
+                            <td>正常</td>
+                            <td>
+                                <button class="btn btn-danger">禁用</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <ul id="paginator"></ul>
+            </div>
         </div>
     </div>
 
@@ -74,13 +98,52 @@
             </div>
         </div>
     </div>
-
+    <!-- 点击禁用模态框 -->
+    <div class="modal fade mg_top" id="btnModal" tabindex="-1" >
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title">温馨提示</h4>
+            </div>
+            <div class="modal-body">
+                <p class="red "><i class="glyphicon glyphicon-info-sign"></i> 您确定要修改吗?</p>   
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary " id="submitBtn">确定</button>
+            </div>
+            </div>
+        </div>
+    </div>
+   
 <script src="./lib/jquery/jquery.js"></script>
 <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+<script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
 <script src="./lib/nprogress/nprogress.js"></script>
 <script src="./lib/echarts/echarts.min.js"></script>
+<script src="./lib/artTemplate/template-web.js"></script>
 <script src="./js/common.js"></script>
-<script src="./js/index.js"></script>
+<script src="./js/user.js"></script>
+<script type="text/html" id="tmp">
+    {{each rows v i}}
+        <tr>
+            <td>{{v.id}}</td>
+            <td>{{v.username}}</td>
+            <td>{{v.mobile}}</td>
+            <td>{{v.isDelete ===1 ? "正常" : "禁用"}}</td>
+            <td data-id={{v.id}}>
+                {{if v.isDelete === 1}}
+                <button class="btn btn-danger">禁用</button>
+                {{/if}}
+                {{if v.isDelete === 0}}
+                <button class="btn btn-success">启用</button>
+                {{/if}}
+            </td>
+        </tr>
+    {{/each}}
+</script>
+
 </body>
 </html>

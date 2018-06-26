@@ -122,3 +122,13 @@ a:active {
 .mg_top {
     margin-top: 200px;
 }
+.echart1,
+.echart2{
+    width: 48%;
+    height: 400px;
+}
+.main_bottom .table th,
+.main_bottom .table td{
+    text-align: center;
+    vertical-align: middle;
+}
