@@ -89,7 +89,7 @@ $(function () {
 //                 $('#paginator').bootstrapPaginator({
 //                     bootstrapMajorVersion: 3,
 //                     currentPage: info.page,
-//                     totalPages: Math.ceil(info.total - info.size),
+//                     totalPages: Math.ceil(info.total/ info.size),
 //                     onPageClicked: function (a,b,c,page) {
 //                         currentPage =page;
 //                         render();

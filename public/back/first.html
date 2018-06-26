@@ -48,6 +48,32 @@
                 <li><a href="#">分类管理</a></li>
                 <li class="active">一级分类</li>
             </ol>
+
+            <div class="main_bottom">
+                <button class="btn btn-default mg_top btnCate">添加分类</button>
+
+                <table class="table table-bordered table-hover mg_top">
+                    <thead>
+                        <tr>
+                            <th width="20%">序号</th>
+                            <th width="80%">一级分类</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>1</th>
+                            <th>户外馆</th>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <ul id="paginator"></ul>
+            </div>
+
+
+
+
         </div>
     </div>
 
@@ -71,10 +97,51 @@
         </div>
     </div>
 
+    <!-- 添加模态框 -->
+
+    <div class="modal fade mg_top" id="addModal" tabindex="-1" >
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <form id="addForm">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                        <h4 class="modal-title">温馨提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="categoryName" placeholder="请输入一级分类名">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary " id="addBtn">确定</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+   
+
 <script src="./lib/jquery/jquery.js"></script>
 <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+<script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
+<script src="./lib/artTemplate/template-web.js"></script>
 <script src="./lib/nprogress/nprogress.js"></script>
 <script src="./js/common.js"></script>
+<script src="./js/first.js"></script>
+
+
+
+<script type="text/html" id="tmp">    
+    {{each rows v i}}
+        <tr>
+            <th>{{i + 1 + (page-1)*size}}</th>
+            <th>{{v.categoryName}}</th>
+        </tr>
+    {{/each}}
+
+</script>
 </body>
 </html>
