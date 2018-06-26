@@ -47,11 +47,34 @@
                 <li><a href="#">管理系统</a></li>
                 <li class="active">商品管理</li>
             </ol>
+
+            <div class="mian_bottom">
+                <button class="btn btn-default" id="btnAdd">添加商品</button>
+
+                <table class="table table-bordered table-hover mg_20">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>商品名称</th>
+                            <th>商品描述</th>
+                            <th>商品库存</th>
+                            <th>商品尺寸</th>
+                            <th>商品状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 此处有坑 -->
+                    </tbody>
+                </table>
+
+
+               <div class="text-right"><ul id="paginator"></ul></div>
+            </div>
         </div>
     </div>
 
-    <!-- 退出模态框
-     -->
+    <!-- 退出模态框 -->
      <div class="modal fade mg_top" id="myModal" tabindex="-1" >
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -70,10 +93,88 @@
         </div>
     </div>
 
+    <!-- 添加模态框 -->
+<div class="modal fade " id="myProductModal" tabindex="-1" >
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    <h4 class="modal-title">添加商品</h4>
+                </div>
+                <div class="modal-body">
+                   <div class="form-group">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" >
+                               <span>请选择二级分类</span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" >
+                                <!-- 此处为动态生成元素 -->
+                            </ul>
+                        </div>
+                   </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="num"  placeholder="请输入商品名称">
+                    </div>
+                    <!-- 文本域 -->
+                    <textarea class="form-control" rows="3"></textarea>
+
+                    <div class="form-group mg_20">
+                        <input type="text" class="form-control" name="num"  placeholder="请输入商品库存">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="size"  placeholder="请输入商品尺码">
+                    </div> 
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="oldPrice"  placeholder="请输入商品原价">
+                    </div> 
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="price"  placeholder="请输入商品现价">
+                    </div>
+                    <div class="form-group">
+                        <label for="fileupload" class="btn btn-default" >上传图片</label>
+                        <input type="file" id="fileupload" name="pic1" data-url="/product/addProduct" style="display: none;">
+                    </div>
+                    <div class="form-group" >
+                        <img src="images/default.png" alt="" width="100" height="100" style="display: none;">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">添加</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script src="./lib/jquery/jquery.js"></script>
 <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+<script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
+<script src="./lib/artTemplate/template-web.js"></script>
 <script src="./lib/nprogress/nprogress.js"></script>
 <script src="./js/common.js"></script>
+<script src="./js/product.js"></script>
+
+<script type="text/template" id="tmp">
+
+    {{each rows v i}}
+        <tr>
+            <td>{{i+1+ (page-1)*size}}</td>
+            <td>{{v.proDesc}}</td>
+            <td>{{v.proName}}</td>
+            <td>{{v.num}}</td>
+            <td>{{v.size}}</td>
+            <td>{{v.statu}}</td>
+            <td>
+                <button class="btn btn-danger">下架</button>
+            </td>
+        </tr>
+    {{/each}}
+
+</script>
+    
 </body>
 </html>
