@@ -127,11 +127,11 @@ a:active {
     width: 48%;
     height: 400px;
 }
-.main_bottom .table th,
-.main_bottom .table td{
+.table.table-bordered th,
+.table.table-bordered td{
     text-align: center;
     vertical-align: middle;
 }
-.mg_top {
+.mg_20 {
     margin-top: 20px;
 }
