@@ -97,7 +97,7 @@
 <div class="modal fade " id="myProductModal" tabindex="-1" >
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <form>
+            <form id="form">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
                     <h4 class="modal-title">添加商品</h4>
@@ -106,19 +106,23 @@
                    <div class="form-group">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" >
-                               <span>请选择二级分类</span>
+                               <span id="categorySecond">请选择二级分类</span>
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" >
                                 <!-- 此处为动态生成元素 -->
                             </ul>
                         </div>
+                        <input type="hidden" name="brandId">
+                        <input type="hidden" name="statu" value="1">
                    </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="num"  placeholder="请输入商品名称">
+                        <input type="text" class="form-control" name="proName"  placeholder="请输入商品名称">
                     </div>
-                    <!-- 文本域 -->
-                    <textarea class="form-control" rows="3"></textarea>
+                   <div class="form-group">
+                        <!-- 文本域 -->
+                        <textarea class="form-control" name="proDesc" rows="3" placeholder="请输入商品描述"></textarea>
+                   </div>
 
                     <div class="form-group mg_20">
                         <input type="text" class="form-control" name="num"  placeholder="请输入商品库存">
@@ -134,10 +138,11 @@
                     </div>
                     <div class="form-group">
                         <label for="fileupload" class="btn btn-default" >上传图片</label>
-                        <input type="file" id="fileupload" name="pic1" data-url="/product/addProduct" style="display: none;">
+                        <input type="file" id="fileupload" name="pic1" data-url="/product/addProductPic" style="display: none;" multiple>
                     </div>
-                    <div class="form-group" >
-                        <img src="images/default.png" alt="" width="100" height="100" style="display: none;">
+                    <div class="form-group " id="imgBox">
+                        <input type="hidden" name="picStatus">
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -151,9 +156,16 @@
 
 <script src="./lib/jquery/jquery.js"></script>
 <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+<!-- 引入表单检测 -->
 <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
-<script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
+<!-- 引入模板 -->
 <script src="./lib/artTemplate/template-web.js"></script>
+<!-- 引入分页 -->
+<script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
+<!-- 引入文件上传 -->
+<script src="./lib/jquery-fileupload/jquery.ui.widget.js"></script>
+<script src="./lib/jquery-fileupload/jquery.fileupload.js"></script>
+<!-- 引入进度条 -->
 <script src="./lib/nprogress/nprogress.js"></script>
 <script src="./js/common.js"></script>
 <script src="./js/product.js"></script>
@@ -172,6 +184,14 @@
                 <button class="btn btn-danger">下架</button>
             </td>
         </tr>
+    {{/each}}
+
+</script>
+
+<script type="text/html" id="tpl">
+    {{each rows v i}}
+
+        <li><a href="#" data-id={{v.id}}>{{v.brandName}}</a></li>
     {{/each}}
 
 </script>
