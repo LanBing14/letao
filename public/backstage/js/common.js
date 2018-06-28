@@ -13,8 +13,8 @@ $(document).ajaxStop(function () {
 
 $(function () {
     // 切换分类
-    $('.category').click(function () {
-        $('.child').stop().slideToggle();
+    $('.slide_info .category').click(function () {
+        $(' .slide_info .child').stop().slideToggle();
     });
 
 

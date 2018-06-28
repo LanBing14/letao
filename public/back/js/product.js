@@ -2,7 +2,7 @@
 
 $(function () {
     var currentPage = 1;
-    var pageSize = 5;
+    var pageSize = 2;
     function render() {
         $.ajax({
             type:'get',
@@ -24,15 +24,34 @@ $(function () {
                     bootstrapMajorVersion: 3,
                     currentPage: info.page,
                     totalPages: Math.ceil(info.total/info.size),
+                    useBootstrapTooltip: true,
+                    tooltipTitles: function (type, page, current) {
+                        switch (type) {
+                            case "first": 
+                                return "首页";
+                            case "last":
+                                return "尾页";
+                            case "prev":
+                                return "前往上一页";
+                            case "next":
+                                return "前往下一页";
+                            case "page":
+                                return "第"+page+"页"
+                        }
+                    },
                     itemTexts: function (type, page, current) {
                         switch (type) {
                             case "first": return "首页";
                             case "prev": return "上一页";
                             case "next": return "下一页";
-                            case "last": return "末页";
+                            case "last": return "尾页";
                             case "page": return page;
                         }
                     },//改写分页按钮字样
+                    onPageClicked: function (event, originalEvent, type,page) {
+                        currentPage = page;
+                        render();
+                    }
                 })
             }
         })
@@ -66,6 +85,7 @@ $(function () {
         $id = $(this).data('id');
 
         $('[name="brandId"]').val($id);
+        $('#form').data('bootstrapValidator').updateStatus('brandId','VALID')
     })
     var picArr = [];
    $('#fileupload').fileupload({
@@ -77,8 +97,8 @@ $(function () {
 
         //获取的片的地址
         var picUrl = data.result.picAddr;
-        //将图片的地址放到数组zhong
-        picArr.unshift(picUrl);
+        //将图片的地址放到数组的最前面
+        picArr.unshift(data.result);
 
         //新的图片添加到盒子的最前面
         $('#imgBox').prepend('<img src="'+ picUrl +'"width="100" height="100">');
@@ -128,6 +148,10 @@ $(function () {
                     validators:{
                         notEmpty: {
                             message: "请输入商品数量",
+                        },
+                        regexp: {
+                            regexp: /^[1-9]\d*$/,
+                            message: '商品库存必须是非零开头的数字'
                         }
                     } 
                 },
@@ -135,6 +159,10 @@ $(function () {
                     validators:{
                         notEmpty: {
                             message: "请输入商品尺寸",
+                        },
+                        regexp: {
+                            regexp: /^\d{2}-\d{2}*$/,
+                            message: '商品尺码必须是xx-xx的数字格式'
                         }
                     } 
                 },
@@ -142,14 +170,16 @@ $(function () {
                     validators:{
                         notEmpty: {
                             message:  "请输入商品原价",
-                        }
+                        },
+                        
                     } 
                 },
                 price: {
                     validators:{
                         notEmpty: {
                             message: "请输入商品现价",
-                        }
+                        },
+                        
                     } 
                 },
                 picStatus: {
@@ -165,16 +195,24 @@ $(function () {
     //表单校验成功阻止默认事件
     $('#form').on('success.form.bv', function (e) {
         e.preventDefault();
+        var formParam = $('#form').serialize();
+        formParam +="&picName1="+picArr[0].picName+"&picAddr1="+ picArr[0].picAddr;
+        formParam +="&picName1="+picArr[1].picName+"&picAddr1="+ picArr[1].picAddr;
+        formParam +="&picName1="+picArr[2].picName+"&picAddr1="+ picArr[2].picAddr;
         //发送ajax请求
         $.ajax({
             type: 'post',
             url: '/product/addProduct',
-            data: $('#form').serialize(),
+            data: formParam,
             dataType: 'json',
             success: function (info) {
+                $('#myProductModal').modal('hide');
                 console.log(info);
                 currentPage = 1;
                 render();
+
+                //重置表单
+                $('#form').data('bootstrapValidator').resetForm(true);
             }
         })
     })

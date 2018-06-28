@@ -70,7 +70,6 @@ a:active {
     width: 100%;
     height: 100%;
     padding-top: 50px;
-    background-color: pink;
     padding-left: 180px;
     transition: all 1s;
 }
@@ -100,4 +99,23 @@ a:active {
 }
 .breadcrumb {
     margin-top: 30px;
+}
+.echarts1,
+.echarts2 {
+    width: 48%;
+    height: 400px;
+}
+.main_bottom .table.table-bordered th,
+.main_bottom .table.table-bordered td {
+    vertical-align: middle;
+    text-align: center;
+}
+.red {
+    color: red;
+}
+.mg_20 {
+    margin-top: 20px;
+}
+.mg_150 {
+    margin-top: 150px;
 }

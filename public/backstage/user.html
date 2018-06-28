@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="./lib/bootstrap-validator/css/bootstrapValidator.css">
+    <link rel="stylesheet" href="./lib/nprogress/nprogress.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="left_slide">
+    <div class="slide_top"><h3>黑马21期</h3></div>
+    <div class="slide_img"><img src="./images/default.png" alt=""><p>超级管理员</p></div>
+    <div class="slide_info">
+        <ul>
+            <li><a href="user.html" class="current"><i class="glyphicon glyphicon-user"></i><span>用户管理</span></a></li>
+            <li>
+                <a href="javascript:;" class="category"><i class="glyphicon glyphicon-list"></i> <span>分类管理</span></a>
+                <ul class="child">
+                    <li><a href="first.html"><span>一级分类</span></a></li>
+                    <li><a href="second.html"><span>二级分类</span></a></li>
+                </ul>
+            </li>
+            <li><a href="#"><i class="glyphicon glyphicon-tags"></i> <span>商品管理</span></a></li>
+        </ul>
+    </div>
+
+</div>
+
+
+<!-- 右边流式布局 -->
+    <div class="right_main">
+        <div class="main_top">
+            <a href="#" class="pull-left icon-menu"><i class="glyphicon glyphicon-align-justify"></i></a>
+            <a href="#" class="pull-right icon-loginOut"><i class="glyphicon glyphicon-log-out"></i></a>
+        </div>
+        <div class="container-fluid">
+            <ol class="breadcrumb">
+                <li><a href="#">管理系统</a></li>
+                <li class="active">用户管理</li>
+            </ol>  .
+            <div class="main_bottom">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>用户名</th>
+                            <th>手机号</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>itcast</td>
+                            <td>12344567788</td>
+                            <td>禁用</td>
+                            <td>
+                                <button class="btn btn-danger">禁用</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-right">
+                    <ul id="paginator"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- 模态框 -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+            <h4 class="modal-title">温馨提示</h4>
+        </div>
+        <div class="modal-body">
+            <p class="red"><i class="glyphicon glyphicon-info-sign"></i> 你确定要执行此操作吗?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary"  id="useBtn">确定</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="./lib/jquery/jquery.js"></script>
+<script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+<!-- 分页插件 -->
+<script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
+<!-- 图表插件 -->
+<script src="./lib/echarts/echarts.min.js"></script>
+<!-- 进度条插件 -->
+<script src="./lib/nprogress/nprogress.js"></script>
+<!-- 模板插件 -->
+<script src="./lib/artTemplate/template-web.js"></script>
+<script src="./js/common.js"></script>
+<script src="./js/user.js"></script>
+
+
+<script type="text/html" id="tmp">
+    {{each rows v i }}
+        <tr>
+            <td>{{i+1+(page-1)*size}}</td>
+            <td>{{v.username}}</td>
+            <td>{{v.mobile}}</td>
+            <td>{{v.isDelete == 0? "禁用":"正常"}}</td>
+            <td data-id={{v.id}}>
+                {{if v.isDelete==0 }}
+                <button class="btn btn-success" >启用</button>
+                {{ else if v.isDelete==1}}
+                <button class="btn btn-danger">禁用</button>
+                {{/if}}
+            </td>
+        </tr>
+    {{/each}}
+
+</script>
+</body>
+</html>

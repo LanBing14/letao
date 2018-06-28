@@ -5,7 +5,6 @@ if (location.href.indexOf("login.html") === -1) {
         url: '/employee/checkRootLogin',
         dataTye: 'json',
         success: function (info) {
-            // console.log(info);
             if (info.success) {
                 // location.href = "index.html";
                 console.log("当前用户已经登录");
