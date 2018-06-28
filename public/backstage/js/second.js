@@ -2,9 +2,9 @@
 
 $(function () {
     //发送ajax请求像后台请求数据
+    var $id;
     var currentPage = 1;
     var pageSize = 5;
-    var $id;
     function render() {
         $.ajax({
             type:'get',

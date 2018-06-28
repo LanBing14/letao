@@ -161,7 +161,7 @@ $(function () {
                             message: "请输入商品尺寸",
                         },
                         regexp: {
-                            regexp: /^\d{2}-\d{2}*$/,
+                            regexp: /^\d{2}-\d{2}$/,
                             message: '商品尺码必须是xx-xx的数字格式'
                         }
                     } 
