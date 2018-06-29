@@ -91,3 +91,66 @@ ul {
 .mobile_footer li.current p {
     color: orange;
 }
+
+/* 输入框 */
+.It_header {
+    padding: 10px;
+    position: relative;
+}
+.It_header  input {
+    height: 40px;
+    padding: 10px;
+    color: #666;
+    margin: 0;
+    font-size: 14px;
+    border-radius: 5px ;
+    border: 1px solid #006699;
+}
+.btnClick {
+    position: absolute;
+    top: 10px;
+    height: 40px;
+    display: block;
+    background-color: #006699;
+    right: 10px;
+    border-radius:0 5px 5px 0;
+    border: 1px solid #006699;
+    
+}
+
+.main_sport {
+    width: 100%;
+    
+}
+.main_sport li {
+    width: 48%;
+    float: left;
+    text-align: center;
+    margin-right: 2%;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+.main_sport li  a {
+    width: 100%;
+    height: 100%;
+    display: block;
+
+}
+.main_sport li img {
+    width: 100%;
+    display: block;
+
+}
+.main_sport li p {
+    margin: 0;
+
+}
+.main_sport .price {
+    color: red;
+    font-size: 14px;
+}
+.main_sport .oldPrice {
+    font-size: 14px;
+    color: #ccc;
+    text-decoration: line-through;
+}

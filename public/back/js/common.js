@@ -6,8 +6,6 @@ if (location.href.indexOf("login.html") === -1) {
         dataTye: 'json',
         success: function (info) {
             if (info.success) {
-                // location.href = "index.html";
-                console.log("当前用户已经登录");
             } 
             if(info.error === 400) {
                 location.href = "login.html";

@@ -29,9 +29,12 @@ $(function () {
     }
 
 
-    $('.category_left ul').on('click','a',function () {
+    $('.category_left').on('click','a',function () {
        var id = $(this).data('id');
        renderSecond(id);
+       //删除其他的类名
+       
+       $(this).toggleClass('current').parent().siblings().find('a').removeClass('current');
 
     })
 
